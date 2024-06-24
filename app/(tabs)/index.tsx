@@ -3,8 +3,12 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-const receita = 1000;
-const despesa = 638.82;
+const receita = 2672.68;
+const despesa = 1908.35;
+
+const formatCurrency = (value: number) => {
+  return value.toFixed(2).replace('.', ',');
+};
 
 export default function HomeScreen() {
   return (
@@ -16,7 +20,7 @@ export default function HomeScreen() {
       <ThemedView style={styles.balance}>
         <View style={styles.balanceText}>
           <Text style={styles.balanceTitle}>Saldo disponível</Text>
-          <Text style={styles.balanceNum}>R$ {despesa}</Text>
+          <Text style={styles.balanceNum}>R$ {formatCurrency(receita - despesa)}</Text>
         </View>
         <ThemedView style={styles.graphView}>
           <BarGraph receita={receita} despesa={despesa} />
@@ -68,8 +72,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderWidth: 1,
     fontFamily: "sans-serif",
-    borderRadius: 20,
-    fontSize: 160,
+    borderRadius: 10,
     width: 300,
     height: 150, // Aumentar a altura para incluir o gráfico e a legenda
     position: "absolute",
